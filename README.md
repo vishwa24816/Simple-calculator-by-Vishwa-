@@ -1,2 +1,2 @@
-# Simple-calculator-by-Vishwa-
-Simple calculator only with front end 
+# Calculator-by-Vishwa-
+Calculator only with front end 
