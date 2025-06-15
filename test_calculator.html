@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator Tests</title>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/jasmine-core@4.5.0/lib/jasmine-core/jasmine.css">
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        .jasmine_html-reporter .jasmine-results { background-color: #f4f4f4; }
+        .jasmine_html-reporter .jasmine-spec-detail.jasmine-passed { background-color: #d4edda; border-left: 5px solid #28a745; }
+        .jasmine_html-reporter .jasmine-spec-detail.jasmine-failed { background-color: #f8d7da; border-left: 5px solid #dc3545; }
+        .jasmine_html-reporter .jasmine-overall-status .jasmine-results { background-color: #fff; }
+    </style>
+</head>
+<body>
+    <h1>Calculator Test Suite (Jasmine)</h1>
+
+    <!-- Mocked Calculator DOM for calculator.js -->
+    <!-- This structure should mirror what calculator.js expects -->
+    <div class="calculator" style="display: none;">
+        <input type="text" id="display" readonly placeholder="0">
+
+        <!-- Basic Operation Buttons -->
+        <button class="btn number" data-value="0">0</button>
+        <button class="btn number" data-value="1">1</button>
+        <button class="btn number" data-value="2">2</button>
+        <button class="btn number" data-value="3">3</button>
+        <button class="btn number" data-value="4">4</button>
+        <button class="btn number" data-value="5">5</button>
+        <button class="btn number" data-value="6">6</button>
+        <button class="btn number" data-value="7">7</button>
+        <button class="btn number" data-value="8">8</button>
+        <button class="btn number" data-value="9">9</button>
+        <button class="btn number" data-value=".">.</button>
+
+        <button class="btn operator" data-value="+">+</button>
+        <button class="btn operator" data-value="-">-</button>
+        <button class="btn operator" data-value="*">×</button>
+        <button class="btn operator" data-value="/">÷</button>
+        <button class="btn operator" data-value="(">(</button>
+        <button class="btn operator" data-value=")">)</button>
+        <button class="btn operator" data-value="%">%</button>
+
+        <button class="btn equals" data-value="=">=</button>
+        <button class="btn clear-all" data-value="AC">AC</button>
+        <button class="btn clear-entry" data-value="CE">CE</button>
+        <button class="btn backspace" data-value="DEL">DEL</button>
+
+        <!-- Scientific Function Buttons (subset needed for testing UI interaction like Inv button) -->
+        <button class="btn function" data-value="rad">Rad</button>
+        <button class="btn function" data-value="deg">Deg</button>
+        <button class="btn function" data-value="inv">Inv</button>
+
+        <button class="btn function" data-value="sin">sin</button>
+        <button class="btn function" data-value="cos">cos</button>
+        <button class="btn function" data-value="tan">tan</button>
+        <button class="btn function" data-value="asin">asin</button> <!-- For Inv testing -->
+        <button class="btn function" data-value="acos">acos</button> <!-- For Inv testing -->
+        <button class="btn function" data-value="atan">atan</button> <!-- For Inv testing -->
+
+        <button class="btn function" data-value="sinh">sinh</button>
+        <button class="btn function" data-value="cosh">cosh</button>
+        <button class="btn function" data-value="tanh">tanh</button>
+        <button class="btn function" data-value="asinh">asinh</button> <!-- For Inv testing -->
+        <button class="btn function" data-value="acosh">acosh</button> <!-- For Inv testing -->
+        <button class="btn function" data-value="atanh">atanh</button> <!-- For Inv testing -->
+
+        <button class="btn function" data-value="ln">ln</button>
+        <button class="btn function" data-value="log">log</button> <!-- log10 -->
+        <button class="btn function" data-value="log2">log2</button>
+
+        <button class="btn function" data-value="sqrt">√</button>
+        <button class="btn function" data-value="x^2">x<sup>2</sup></button>
+        <button class="btn function" data-value="x^3">x<sup>3</sup></button>
+        <button class="btn function" data-value="^">x<sup>y</sup></button>
+        <button class="btn function" data-value="1/x">1/x</button>
+
+        <button class="btn function" data-value="e^x">e<sup>x</sup></button>
+        <button class="btn function" data-value="10^x">10<sup>x</sup></button>
+        <button class="btn function" data-value="2^x">2<sup>x</sup></button>
+
+        <button class="btn function" data-value="abs">abs</button>
+        <button class="btn function" data-value="round">round</button>
+        <button class="btn function" data-value="floor">floor</button>
+        <button class="btn function" data-value="ceil">ceil</button>
+        <button class="btn function" data-value="rand">rand</button>
+        <button class="btn number" data-value="π">π</button>
+        <button class="btn number" data-value="e">e</button>
+        <button class="btn number" data-value="phi">φ</button>
+
+        <!-- Memory buttons -->
+        <button class="btn memory" data-value="MC">MC</button>
+        <button class="btn memory" data-value="MR">MR</button>
+        <button class="btn memory" data-value="M+">M+</button>
+        <button class="btn memory" data-value="M-">M-</button>
+        <button class="btn memory" data-value="MS">MS</button>
+
+        <button class="btn function" data-value="ans">Ans</button>
+        <button class="btn function" data-value="exp">EXP</button>
+    </div>
+
+    <!-- Jasmine Scripts -->
+    <script src="https://unpkg.com/jasmine-core@4.5.0/lib/jasmine-core/jasmine.js"></script>
+    <script src="https://unpkg.com/jasmine-core@4.5.0/lib/jasmine-core/jasmine-html.js"></script>
+    <script src="https://unpkg.com/jasmine-core@4.5.0/lib/jasmine-core/boot0.js"></script> <!-- For basic boot -->
+    <script src="https://unpkg.com/jasmine-core@4.5.0/lib/jasmine-core/boot1.js"></script> <!-- For more advanced boot -->
+
+    <!-- Source File (Calculator Logic) -->
+    <script src="calculator.js"></script>
+
+    <!-- Test File (Jasmine Specs) -->
+    <script src="test_calculator.js"></script>
+
+</body>
+</html>

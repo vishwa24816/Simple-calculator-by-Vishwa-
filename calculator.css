@@ -3,127 +3,161 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-color: #121212; /* Dark background */
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    color: #fff;
+    color: #E0E0E0; /* Light text color for body */
 }
 
 .calculator {
-    background-color: #2c3e50;
+    background-color: #1e1e1e; /* Slightly lighter dark gray for calculator body */
     padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    border-radius: 16px; /* Softer corners */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); /* More subtle shadow */
     width: 100%;
-    max-width: 420px;
+    max-width: 450px; /* Slightly wider to accommodate potential button text */
 }
 
 .display-container {
-    margin-bottom: 20px;
+    margin-bottom: 25px; /* Increased margin */
 }
 
 #display {
-    width: calc(100% - 20px);
-    height: 70px;
-    padding: 0 10px;
-    font-size: 2.8em;
+    width: calc(100% - 20px); /* Keep padding accounted for */
+    height: 75px; /* Slightly taller display */
+    padding: 0 15px; /* Increased horizontal padding */
+    font-size: 2.6em; /* Adjusted font size */
     text-align: right;
     border: none;
-    border-radius: 10px;
-    background-color: #1a252f;
-    color: #ecf0f1;
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
-    letter-spacing: 1px;
+    border-radius: 12px; /* Softer corners for display */
+    background-color: #2a2a2a; /* Darker display background */
+    color: #E0E0E0; /* Light text for display */
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.25); /* Subtle inset shadow */
+    letter-spacing: 0.5px;
 }
 
 #display::placeholder {
-    color: #7f8c8d;
+    color: #6c757d; /* Muted placeholder color */
 }
 
 .buttons {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 12px;
+    gap: 10px; /* Slightly reduced gap */
 }
 
 .btn {
-    padding: 18px 10px;
-    font-size: 1.1em;
+    padding: 20px 10px; /* Increased padding for a chunkier feel */
+    font-size: 1.05em; /* Slightly adjusted font size */
     border: none;
-    border-radius: 8px;
+    border-radius: 12px; /* More rounded buttons */
     cursor: pointer;
-    background-color: #34495e;
-    color: #ecf0f1;
-    transition: background-color 0.2s ease, transform 0.1s ease;
+    background-color: #333333; /* Base button color */
+    color: #E0E0E0; /* Light text for buttons */
+    transition: background-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
     font-weight: 500;
-    box-shadow: 0 3px 5px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Subtle shadow for buttons */
 }
 
 .btn:hover {
-    background-color: #4a647e;
+    background-color: #424242; /* Lighter shade on hover */
+    box-shadow: 0 3px 6px rgba(0,0,0,0.25);
 }
 
 .btn:active {
-    transform: translateY(2px);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    transform: translateY(1px) scale(0.98); /* Subtle press effect */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
-.btn.number, .btn.operator {
-
+/* Specific button types */
+.btn.number {
+    /* Uses base .btn style, can be specified if differentiation needed */
+    background-color: #383838; /* Slightly different shade for numbers */
 }
+.btn.number:hover {
+    background-color: #454545;
+}
+
+
+.btn.operator {
+    background-color: #404040; /* Darker gray for operators */
+    color: #E0E0E0;
+}
+.btn.operator:hover {
+    background-color: #505050;
+}
+
 
 .btn.function {
-    background-color: #273644;
-    color: #bdc3c7;
+    background-color: #404040; /* Same as operator for unified advanced section */
+    color: #E0E0E0; /* Light text for functions */
 }
 .btn.function:hover {
-    background-color: #3a4f61;
+    background-color: #505050; /* Slightly lighter on hover */
 }
 
 
 .btn.equals {
-    background-color: #e67e22;
+    background-color: #007BFF; /* Muted blue for equals */
     color: white;
     grid-column: span 2; 
 }
 .btn.equals:hover {
-    background-color: #d35400;
+    background-color: #0056b3; /* Darker blue on hover */
 }
 
 .btn.clear-all, .btn.clear-entry, .btn.backspace {
-    background-color: #c0392b;
+    background-color: #D9534F; /* Muted red for clear/delete */
     color: white;
 }
 .btn.clear-all:hover, .btn.clear-entry:hover, .btn.backspace:hover {
-    background-color: #a93226;
+    background-color: #C9302C; /* Darker red on hover */
 }
 
 .btn.memory {
-    background-color: #8e44ad;
+    background-color: #5BC0DE; /* Muted teal for memory */
     color: white;
 }
 .btn.memory:hover {
-    background-color: #732d91;
-}
-
-
+    background-color: #31B0D5; /* Darker teal on hover */
 }
 
 /* Responsive adjustments */
 @media (max-width: 480px) {
     .calculator {
-        padding: 15px;
-        max-width: 95%;
+        padding: 20px; /* Adjusted padding */
+        max-width: 100%;
+        margin: 10px; /* Add margin for very small screens */
+        border-radius: 12px;
     }
     #display {
         font-size: 2.2em;
+        height: 65px; /* Adjusted height */
+        padding: 0 10px;
+    }
+    .btn {
+        padding: 18px 5px; /* Adjust padding for smaller buttons */
+        font-size: 0.95em; /* Adjust font size for smaller buttons */
+        border-radius: 10px; /* Slightly smaller radius for smaller buttons */
+    }
+    .buttons {
+        gap: 8px; /* Maintain a smaller gap */
+    }
+}
+
+@media (max-width: 360px) {
+    #display {
+        font-size: 2em;
         height: 60px;
     }
     .btn {
-        padding: 15px 8px;
-        font-size: 1em;
+        padding: 15px 5px;
+        font-size: 0.9em;
     }
-    .buttons {
-        gap: 8px;
-    }
+}
+
+.active-mode {
+    background-color: #0056b3 !important; /* A distinct highlight color, matching equals hover */
+    color: white !important;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3) !important;
 }
